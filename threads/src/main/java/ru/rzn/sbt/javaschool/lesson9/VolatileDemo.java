@@ -8,6 +8,8 @@ public class VolatileDemo {
         new ChangeMaker().start();
     }
 
+
+
     static class ChangeListener extends Thread {
         @Override
         public void run() {

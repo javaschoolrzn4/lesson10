@@ -35,7 +35,7 @@ class Worker {
 
     public synchronized void work (CommonResource commonResource, Worker otherWorker) {
         while (active) {
-            // Ожидание доступности ресурса
+            // wait for the resource to become available.
             if (commonResource.getOwner() != this) {
                 try {
                     Thread.sleep(10);
@@ -45,7 +45,7 @@ class Worker {
                 continue;
             }
 
-            // Если другой обработчик активен, предоставляем ему владение ресурсом
+            // If other worker is also active let it do it's work first
             if (otherWorker.isActive()) {
                 System.out.println(getName() +
                         " : handover the resource to the worker " +
